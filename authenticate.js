@@ -6,7 +6,6 @@ var crypto=require('crypto');
 var algorithm = 'aes256';
 var key=process.env.secretkey;
 
-
 function extractToken (req) {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         return req.headers.authorization.split(' ')[1];
@@ -51,7 +50,6 @@ exports.verifyUser = async (req,res,next) => {
    }
      
 }
-
 exports.verifyAdmin =  (req,res,next)=> {
     if(req.user.admin===true) {
         return next();
@@ -59,7 +57,6 @@ exports.verifyAdmin =  (req,res,next)=> {
     else
     return res.status(401).json({error: "Admin access required !!"});
 }
-
 exports.isVerifiedUser = (req,res,next) => {
 
     if(!req.body.email || !req.body.password) 
